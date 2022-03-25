@@ -1,54 +1,57 @@
 using UnityEngine;
 
-public class FreeCamera : MonoBehaviour
+namespace _3DLaser.Scripts
 {
-    [SerializeField] private float _mouseSensitivity;
-    [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _minLimitX;
-    [SerializeField] private float _maxLimitX;
-    [SerializeField] private float _minLimitY;
-    [SerializeField] private float _maxLimitY;
-
-    private Vector3 _defaultCameraPosition;
-    private Quaternion _defaultRotation;
-    private Vector3 _transfer;
-    private float _rotationX;
-    private float _rotationY;
-
-    private void Start()
+    public class FreeCamera : MonoBehaviour
     {
-        _defaultCameraPosition = transform.position;
-        _defaultRotation = transform.rotation;
-    }
+        [SerializeField] private float _mouseSensitivity;
+        [SerializeField] private float _movementSpeed;
+        [SerializeField] private float _minLimitX;
+        [SerializeField] private float _maxLimitX;
+        [SerializeField] private float _minLimitY;
+        [SerializeField] private float _maxLimitY;
 
-    private void Update()
-    {
-        if (Input.GetMouseButton(1))
+        private Vector3 _defaultCameraPosition;
+        private Quaternion _defaultRotation;
+        private Vector3 _transfer;
+        private float _rotationX;
+        private float _rotationY;
+
+        private void Start()
         {
-            _rotationX += Input.GetAxis("Mouse X") * _mouseSensitivity;
-            _rotationY += Input.GetAxis("Mouse Y") * _mouseSensitivity;
-        
-            _rotationX = ClampAngle (_rotationX, _minLimitX, _maxLimitX);
-            _rotationY = ClampAngle (_rotationY, _minLimitY, _maxLimitY);
-        
-            transform.rotation = _defaultRotation * Quaternion.AngleAxis(_rotationX, Vector3.up) * 
-                                 Quaternion.AngleAxis (_rotationY, Vector3.left);
+            _defaultCameraPosition = transform.position;
+            _defaultRotation = transform.rotation;
         }
-        else if(Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.position = _defaultCameraPosition;
-            transform.rotation = _defaultRotation;
-        }
-        
-        _transfer = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
-        transform.position += _transfer * _movementSpeed * Time.deltaTime;
-    }
 
-    private float ClampAngle(float angle, float min, float max)
-    {
-        if (angle < -360F) angle += 360F;
-        if (angle > 360F) angle -= 360F;
+        private void Update()
+        {
+            if (Input.GetMouseButton(1))
+            {
+                _rotationX += Input.GetAxis("Mouse X") * _mouseSensitivity;
+                _rotationY += Input.GetAxis("Mouse Y") * _mouseSensitivity;
         
-        return Mathf.Clamp (angle, min, max);
+                _rotationX = ClampAngle (_rotationX, _minLimitX, _maxLimitX);
+                _rotationY = ClampAngle (_rotationY, _minLimitY, _maxLimitY);
+        
+                transform.rotation = _defaultRotation * Quaternion.AngleAxis(_rotationX, Vector3.up) * 
+                                     Quaternion.AngleAxis (_rotationY, Vector3.left);
+            }
+            else if(Input.GetKeyDown(KeyCode.Space))
+            {
+                transform.position = _defaultCameraPosition;
+                transform.rotation = _defaultRotation;
+            }
+        
+            _transfer = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+            transform.position += _transfer * _movementSpeed * Time.deltaTime;
+        }
+
+        private float ClampAngle(float angle, float min, float max)
+        {
+            if (angle < -360F) angle += 360F;
+            if (angle > 360F) angle -= 360F;
+        
+            return Mathf.Clamp (angle, min, max);
+        }
     }
 }

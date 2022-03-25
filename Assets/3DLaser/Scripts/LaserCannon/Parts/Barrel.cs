@@ -1,11 +1,15 @@
+using _3DLaser.Scripts.LaserCannon.Parts.Base;
 using UnityEngine;
 
-public class Barrel : CannonPart
+namespace _3DLaser.Scripts.LaserCannon.Parts
 {
-    [SerializeField] private LaserBeam _laserBeam;
-
-    private void Start()
+    public class Barrel : CannonPart
     {
-        _laserBeam.gameObject.SetActive(true);
+        [SerializeField] private LaserBeam _laserBeam;
+
+        private void Start()
+        {
+            _laserBeam.gameObject.SetActive(true);
+        }
     }
 }

@@ -1,51 +1,55 @@
+using _3DLaser.Scripts.LaserCannon;
 using UnityEngine;
 
-public class CannonControlPanel : MonoBehaviour
+namespace _3DLaser.Scripts.Ui
 {
-    [SerializeField] private CannonController _cannonController;
+    public class CannonControlPanel : MonoBehaviour
+    {
+        [SerializeField] private CannonController _cannonController;
 
-    private bool _isLeftButtonPressed;
-    private bool _isRightButtonPressed;
-    private bool _isUpButtonPressed;
-    private bool _isDownButtonPressed;
+        private bool _isLeftButtonPressed;
+        private bool _isRightButtonPressed;
+        private bool _isUpButtonPressed;
+        private bool _isDownButtonPressed;
     
-    private void Update()
-    {
-        if (_isLeftButtonPressed)
+        private void Update()
         {
-            _cannonController.TurnPlatformLeft();
+            if (_isLeftButtonPressed)
+            {
+                _cannonController.TurnPlatformLeft();
+            }
+            else if (_isRightButtonPressed)
+            {
+                _cannonController.TurnPlatformRight();
+            }
+            else if (_isUpButtonPressed)
+            {
+                _cannonController.TiltBarrelUp();
+            }
+            else if (_isDownButtonPressed)
+            {
+                _cannonController.TiltBarrelDown();
+            }
         }
-        else if (_isRightButtonPressed)
+    
+        public void OnLeftButtonPress(bool isPressed)
         {
-            _cannonController.TurnPlatformRight();
+            _isLeftButtonPressed = isPressed;
         }
-        else if (_isUpButtonPressed)
+    
+        public void OnRightButtonPress(bool isPressed)
         {
-            _cannonController.TiltBarrelUp();
+            _isRightButtonPressed = isPressed;
         }
-        else if (_isDownButtonPressed)
+    
+        public void OnUpButtonPress(bool isPressed)
         {
-            _cannonController.TiltBarrelDown();
+            _isUpButtonPressed = isPressed;
         }
-    }
     
-    public void OnLeftButtonPress(bool isPressed)
-    {
-        _isLeftButtonPressed = isPressed;
-    }
-    
-    public void OnRightButtonPress(bool isPressed)
-    {
-        _isRightButtonPressed = isPressed;
-    }
-    
-    public void OnUpButtonPress(bool isPressed)
-    {
-        _isUpButtonPressed = isPressed;
-    }
-    
-    public void OnDownButtonPress(bool isPressed)
-    {
-        _isDownButtonPressed = isPressed;
+        public void OnDownButtonPress(bool isPressed)
+        {
+            _isDownButtonPressed = isPressed;
+        }
     }
 }

@@ -1,4 +1,9 @@
-public class Platform : CannonPart
+using _3DLaser.Scripts.LaserCannon.Parts.Base;
+
+namespace _3DLaser.Scripts.LaserCannon.Parts
 {
+    public class Platform : CannonPart
+    {
     
+    }
 }

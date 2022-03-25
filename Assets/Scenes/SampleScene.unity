@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxLength: 25
-  _minPowerLimit: 0
+  _minPowerLimit: 0.1
 --- !u!1 &357477986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,8 +1892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38176cbb5c22fbc42baab85f66636104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseSensitivity: 5
-  _movementSpeed: 5
+  _mouseSensitivity: 3.5
+  _movementSpeed: 7.5
   _minLimitX: -360
   _maxLimitX: 360
   _minLimitY: -60
@@ -2901,8 +2901,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _platform: {fileID: 1881196171}
   _barrelCrane: {fileID: 1100164016}
-  _turningSpeed: 35
-  _tiltingSpeed: 25
+  _turningSpeed: 15
+  _tiltingSpeed: 15
 --- !u!1 &1718205765
 GameObject:
   m_ObjectHideFlags: 0

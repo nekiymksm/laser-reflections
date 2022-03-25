@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public abstract class CannonPart : MonoBehaviour
+namespace _3DLaser.Scripts.LaserCannon.Parts.Base
 {
+    public abstract class CannonPart : MonoBehaviour
+    {
     
+    }
 }
